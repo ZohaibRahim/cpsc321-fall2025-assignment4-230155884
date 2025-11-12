@@ -7,29 +7,34 @@ int main()
 	int cust, resource, i, j, k; 
 	cust = 5; // Indicates the Number of processes/customers 
 	resource = 4; //Indicates the Number of resources 
-	int alloc[cust][resource] = { { 0, 0, 1 }, // P0 // This is Allocation Matrix 
-						{ 3, 0, 0 }, // P1 
-						{ 1, 0, 1 }, // P2 
-						{ 2, 3, 2 }, // P3 
-						{ 0, 0, 3 } }; // P4 
 
-	int max[cust][resource] = { { 7, 6, 3 }, // P0 // MAX Matrix 
+	int avail[resource] = { 2, 3, 2 }; // the available amount of each resource
+	
+	int max[cust][resource] = { { 7, 6, 3 }, // P0 // the maximum demand of each customer
 					{ 3, 2, 2 }, // P1 
 					{ 8, 0, 2 }, // P2 
 					{ 2, 1, 2 }, // P3 
 					{ 5, 2, 3 } }; // P4 
-
-	int avail[resource] = { 2, 3, 2 }; // These are Available Resources 
-
-	int f[cust], ans[cust], ind = 0; 
-	for (k = 0; k < n; k++) { 
-		f[k] = 0; 
-	} 
+	
+	int alloc[cust][resource] = { { 0, 0, 1 }, // P0 // the amount currently allocated to each customer  
+						{ 3, 0, 0 }, // P1 
+						{ 1, 0, 1 }, // P2 
+						{ 2, 3, 2 }, // P3 
+						{ 0, 0, 3 } }; // P4 
+	
+	//the remaining need of each customer
 	int need[cust][resource]; 
 	for (i = 0; i < n; i++) { 
 		for (j = 0; j < r; j++) 
 			need[i][j] = max[i][j] - alloc[i][j]; 
 	} 
+	
+
+	int f[cust], ans[cust], ind = 0; 
+	for (k = 0; k < n; k++) { 
+		f[k] = 0; 
+	} 
+	
 	int y = 0; 
 	for (k = 0; k < 5; k++) { 
 		for (i = 0; i < cust; i++) { 
