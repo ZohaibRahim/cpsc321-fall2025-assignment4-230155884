@@ -2,11 +2,7 @@
 
 int main() 
 { 
-	// P0, P1, P2, P3, P4 are the names of Process
-
-
-
-	int cust, resource, i, j, k; 
+		int cust, resource, i, j, k; 
 
 	//Customer/Processes
 	printf("Enter the number of customers (processes): ");
@@ -121,11 +117,7 @@ int main()
 		printf("C%d", ans[cust - 1]); 
 	}
 	
-
-	
-
 	return (0); 
-
 }
 
 /*
