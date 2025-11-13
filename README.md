@@ -61,7 +61,7 @@ Assignment4.exe
 - Read instances, available resources
 - Read Maximum matrix
 - Read Allocation matrix
-- Compute Need = Maximum - Allocation
+- Compute Need = `Maximum - Allocation`
 - Read new resource request
 - Execute Safety Algorithm
 - Output safe/unsafe result
