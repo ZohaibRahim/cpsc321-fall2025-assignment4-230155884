@@ -70,7 +70,9 @@ int main()
 	
 	
 	//Mark all customers as not finished
-	int f[cust], ans[cust], ind = 0; 
+	int f[cust]; //Finish array
+	int ans[cust]; //Safe sequence array
+	int ind = 0; //Index for safe sequence
 	for (k = 0; k < cust; k++) { 
 		f[k] = 0; 
 	} 
@@ -93,20 +95,32 @@ int main()
 
 				//If need is less than available, add to safe sequence
 				if (flag == 0) { 
-					ans[ind++] = i; 
+					ans[ind++] = i;  //Add customer to safe sequence
 					for (y = 0; y < resource; y++) 
-						avail[y] += alloc[i][y]; 
-					f[i] = 1; 
+						avail[y] += alloc[i][y];  //Release resources
+					f[i] = 1; //Mark customer as finished
 				} 
 			} 
 		} 
 	} 
 
-	//If safe sequence is found, print it
-	printf("The SAFE Sequence is as follows\n"); 
-	for (i = 0; i < cust - 1; i++) 
-		printf(" C%d ->", ans[i]); 
-	printf(" C%d", ans[cust - 1]); 
+	//If not all customers could be allocated, state is unsafe
+	if (ind < cust) { 
+		printf("State Unsafe\n"); 
+		return (0); 
+	}
+
+	//If safe, print the safe sequence
+	else {
+		printf("State Safe\n"); 
+		//print the safe sequence
+		for (i = 0; i < cust - 1; i++) 
+			printf("C%d ", ans[i]); 
+
+		//print last customer
+		printf("C%d", ans[cust - 1]); 
+	}
+	
 
 	
 
