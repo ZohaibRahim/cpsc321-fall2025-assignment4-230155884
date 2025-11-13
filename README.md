@@ -39,9 +39,9 @@ The formatting and prompts match the assignment specification exactly.
 ---
 
 ## **File Structure**
-Assignment4.c
-Assignment4.exe
-README.md
+- Assignment4.c
+- Assignment4.exe
+- README.md
 
 ---
 
