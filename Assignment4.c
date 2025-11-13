@@ -61,7 +61,7 @@ int main()
 	//Resource Request Algorithm
 	int request[resource]; //Request array
 	int req_cust; //Customer making the request
-	printf("\n\nEnter Resource Request (e.g., for Customer1 enter 1 and then requests 1 0 2): ");
+	printf("Enter Resource Request (e.g., for Customer1 enter 1 and then requests 1 0 2): ");
 	scanf("%d", &req_cust);
 	for (i = 0; i < resource; i++) {
 		scanf("%d", &request[i]);
@@ -106,13 +106,13 @@ int main()
 
 	//If not all customers could be allocated, state is unsafe
 	if (ind < cust) { 
-		printf("State Unsafe\n"); 
+		printf("\nState Unsafe\n"); 
 		return (0); 
 	}
 
 	//If safe, print the safe sequence
 	else {
-		printf("State Safe\n"); 
+		printf("\nState Safe\n"); 
 		//print the safe sequence
 		for (i = 0; i < cust - 1; i++) 
 			printf("C%d ", ans[i]); 
@@ -127,3 +127,52 @@ int main()
 	return (0); 
 
 }
+
+/*
+CODE EXECUTION RESULT:
+
+Sample Input 1:
+Enter the number of customers (processes): 5
+Enter the number of resources: 3
+Enter number of instances of each resource (3 values): 10 5 7
+Enter avaialable resources (3 values): 3 3 2
+Enter maximum demand matrix(5 x 3):
+Customer 0: 7 5 3
+Customer 1: 3 2 2
+Customer 2: 9 0 2
+Customer 3: 2 2 2
+Customer 4: 4 3 3
+Enter current allocation matrix(5 x 3):
+Customer 0: 0 1 0
+Customer 1: 2 0 0
+Customer 2: 3 0 2
+Customer 3: 2 1 1
+Customer 4: 0 0 2
+Enter Resource Request (e.g., for Customer1 enter 1 and then requests 1 0 2): 1 1 0 2
+
+Sample Output 1:
+State Safe
+C1 C3 C4 C0 C2
+--------------------------------------------------------------------------------------
+Sample Input 2:
+Enter the number of customers (processes): 5
+Enter the number of resources: 3
+Enter number of instances of each resource (3 values): 10 5 7
+Enter avaialable resources (3 values): 2 3 0
+Enter maximum demand matrix(5 x 3):
+Customer 0: 7 5 3
+Customer 1: 3 2 2
+Customer 2: 9 0 2
+Customer 3: 2 2 2
+Customer 4: 4 3 3
+Enter current allocation matrix(5 x 3):
+Customer 0: 0 1 0
+Customer 1: 2 0 0
+Customer 2: 3 0 2
+Customer 3: 2 1 1
+Customer 4: 0 0 2
+Enter Resource Request (e.g., for Customer1 enter 1 and then requests 1 0 2): 2 0 2 0
+
+Sample Output 2:
+State Unsafe
+*/
