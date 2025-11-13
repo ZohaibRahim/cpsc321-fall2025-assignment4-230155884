@@ -49,11 +49,11 @@ The formatting and prompts match the assignment specification exactly.
 
 ### **Compile**
 ```bash
-gcc assignment4.c -o assignment4
+gcc Assignment4.c -o Assignment4
 ```
 ### **Run**
 ```bash
-./assignment4
+Assignment4.exe
 ```
 ---
 ## **Program Flow**
