@@ -1,5 +1,28 @@
 #include <stdio.h> 
 
+// Function to read an array of integers
+void readArray(int arr[], int n) {
+    for (int i = 0; i < n; i++)
+        scanf("%d", &arr[i]);
+}
+
+// Function to read a matrix of integers
+void readMatrix(int rows, int cols, int matrix[rows][cols]) {
+    for (int i = 0; i < rows; i++) {
+        printf("Customer %d: ", i);
+        for (int j = 0; j < cols; j++)
+            scanf("%d", &matrix[i][j]);
+    }
+}
+
+// Function to compute the need matrix
+void computeNeed(int cust, int res, int max[cust][res], int alloc[cust][res], int need[cust][res]) {
+    for (int i = 0; i < cust; i++)
+        for (int j = 0; j < res; j++) 
+            need[i][j] = max[i][j] - alloc[i][j]; //Calculate need
+}
+
+
 int main() 
 { 
 		int cust, resource, i, j, k; 
@@ -11,59 +34,38 @@ int main()
 	//Resources
 	printf("Enter the number of resources: " );
 	scanf("%d", &resource); //Indicates the Number of resources
-	
+
 	//Number of instances of each resource type
 	int instances[resource]; //the total amount of each resource
 	printf("Enter number of instances of each resource (%d values): ", resource);
-	for (i = 0; i < resource; i++) {
-		scanf("%d", &instances[i]);
-	}
+	readArray(instances, resource);
 	
 	//Available Resources
 	int avail[resource]; //the available amount of each resource
 	printf("Enter avaialable resources (%d values): ", resource);
-	for (i = 0; i < resource; i++) {
-		scanf("%d", &avail[i]);
-	}
+	readArray(avail, resource);
 
 	//Maximum Demand Matrix
 	int max[cust][resource]; //the maximum demand of each customer
 	printf("Enter maximum demand matrix(%d x %d):\n", cust, resource);
-	for (i = 0; i < cust; i++) {
-		printf("Customer %d: ", i);
-		for (j = 0; j < resource; j++) {
-			scanf("%d", &max[i][j]);
-		}
-	}
+	readMatrix(cust, resource, max);
 	
 	//Allocation Matrix
 	int alloc[cust][resource]; // the amount currently allocated to each customer  
 	printf("Enter current allocation matrix(%d x %d):\n", cust, resource);
-	for (i = 0; i < cust; i++) {
-		printf("Customer %d: ", i);
-		for (j = 0; j < resource; j++) {
-			scanf("%d", &alloc[i][j]);
-		}
-	}
+	readMatrix(cust, resource, alloc);
 	
 
 	//Need Matrix
 	int need[cust][resource]; //the remaining need of each customer
-	for (i = 0; i < cust; i++) { 
-		for (j = 0; j < resource; j++) 
-			need[i][j] = max[i][j] - alloc[i][j]; 
-	} 
+	computeNeed(cust, resource, max, alloc, need);
 
 	//Resource Request Algorithm
 	int request[resource]; //Request array
 	int req_cust; //Customer making the request
-	printf("Enter Resource Request (e.g., for Customer1 enter 1 and then requests 1 0 2): ");
+	printf("Enter Resource Request: ");
 	scanf("%d", &req_cust);
-	for (i = 0; i < resource; i++) {
-		scanf("%d", &request[i]);
-	}
-
-	
+	readArray(request, resource);
 	
 	//Mark all customers as not finished
 	int f[cust]; //Finish array
@@ -140,7 +142,7 @@ Customer 1: 2 0 0
 Customer 2: 3 0 2
 Customer 3: 2 1 1
 Customer 4: 0 0 2
-Enter Resource Request (e.g., for Customer1 enter 1 and then requests 1 0 2): 1 1 0 2
+Enter Resource Request: 1 1 0 2
 
 Sample Output 1:
 State Safe
@@ -163,7 +165,7 @@ Customer 1: 2 0 0
 Customer 2: 3 0 2
 Customer 3: 2 1 1
 Customer 4: 0 0 2
-Enter Resource Request (e.g., for Customer1 enter 1 and then requests 1 0 2): 2 0 2 0
+Enter Resource Request: 2 0 2 0
 
 Sample Output 2:
 State Unsafe
